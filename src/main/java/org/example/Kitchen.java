@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 
-abstract public class Kitchen<T> implements AnimalKitchen<T> {
+public abstract class Kitchen<T> implements AnimalKitchen<T> {
 
     private final ArrayList<T> animals;
 
@@ -15,7 +15,7 @@ abstract public class Kitchen<T> implements AnimalKitchen<T> {
     }
 
     @Override
-    abstract public void feed();
+    public abstract void feed();
 
     public ArrayList<T> getAnimals() {
         return animals;
