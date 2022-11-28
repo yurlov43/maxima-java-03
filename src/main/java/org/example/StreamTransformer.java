@@ -1,28 +1,29 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
-public class TextTransformer implements Transformable {
+public class StreamTransformer implements Transformable {
+
     @Override
     public void transform(String fileIn, String fileOut) throws IOException {
-        FileReader fileReader = new FileReader(fileIn);
-        BufferedReader reader = new BufferedReader(fileReader);
-        FileWriter fileWriter = new FileWriter(fileOut);
+        FileInputStream fileInputStream = new FileInputStream(fileIn);
+        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+        FileOutputStream fileOutputStream = new FileOutputStream(fileOut);
+
         String line = reader.readLine();
 
         while(line != null) {
             String[] words = line.split(";");
             String resultString = buildString(words);
-            fileWriter.write(resultString);
+            fileOutputStream.write(resultString.getBytes());
             line = reader.readLine();
         }
 
-        fileReader.close();
-        fileWriter.flush();
-        fileWriter.close();
+        fileInputStream.close();
+        fileOutputStream.flush();
+        fileOutputStream.close();
     }
 
     private String buildString(String[] words) {

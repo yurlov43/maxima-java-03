@@ -6,7 +6,7 @@ import java.io.IOException;
 public class App
 {
     public static void main( String[] args ) throws IncorrectCatWeightException, IOException {
-        Cat c1 = new Cat("C1", 1, true);
+        Cat c1 = new Cat("c1", 1, true);
         Cat c2 = new Cat("C2", 2,false);
         Cat c3 = new Cat("C3", 3, true);
 
@@ -37,5 +37,8 @@ public class App
         System.out.println(queueKitchen.getAnimals());
         queueKitchen.feed();
         System.out.println(queueKitchen.getAnimals());
+
+        StreamTransformer streamTransformer = new StreamTransformer();
+        streamTransformer.transform("catsInfo.csv", "catsInfo.txt");
     }
 }
