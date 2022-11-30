@@ -2,11 +2,11 @@ package org.example;
 
 import java.util.ArrayList;
 
-public abstract class Kitchen<T> implements AnimalKitchen<T> {
+public abstract class AbstractKitchen<T> implements AnimalKitchen<T> {
 
     private final ArrayList<T> animals;
 
-    public Kitchen() {
+    public AbstractKitchen() {
         this.animals = new ArrayList<>();
     }
     @Override

@@ -1,6 +1,6 @@
 package org.example;
 
-public class StackKitchen<T> extends Kitchen<T> {
+public class StackKitchen<T> extends AbstractKitchen<T> {
 
     public void feed() {
         int length = getAnimals().size();

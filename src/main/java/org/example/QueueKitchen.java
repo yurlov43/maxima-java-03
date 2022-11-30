@@ -1,6 +1,6 @@
 package org.example;
 
-public class QueueKitchen<T> extends Kitchen<T> {
+public class QueueKitchen<T> extends AbstractKitchen<T> {
 
     public void feed() {
         int length = getAnimals().size();

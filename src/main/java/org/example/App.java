@@ -6,39 +6,19 @@ import java.io.IOException;
 public class App
 {
     public static void main( String[] args ) throws IncorrectCatWeightException, IOException {
-        Cat c1 = new Cat("c1", 1, true);
-        Cat c2 = new Cat("C2", 2,false);
-        Cat c3 = new Cat("C3", 3, true);
-
-        Dog d1 = new Dog("D1", 11, true);
-        Dog d2 = new Dog("D2", 12,false);
-        Dog d3 = new Dog("D3", 13, true);
+        Cat c1 = new Cat("Murka", 1, true);
+        Cat c2 = new Cat("Murzik", 2,true);
+        Cat c3 = new Cat("Barsik", 3, false);
 
         StackKitchen<Cat> stackKitchen = new StackKitchen<>();
         stackKitchen.add(c1);
         stackKitchen.add(c2);
         stackKitchen.add(c3);
-        System.out.println(stackKitchen.getAnimals());
-        stackKitchen.feed();
-        System.out.println(stackKitchen.getAnimals());
-        stackKitchen.feed();
-        System.out.println(stackKitchen.getAnimals());
-        stackKitchen.feed();
-        System.out.println(stackKitchen.getAnimals());
-
-        QueueKitchen<Dog> queueKitchen = new QueueKitchen<>();
-        queueKitchen.add(d1);
-        queueKitchen.add(d2);
-        queueKitchen.add(d3);
-        System.out.println(queueKitchen.getAnimals());
-        queueKitchen.feed();
-        System.out.println(queueKitchen.getAnimals());
-        queueKitchen.feed();
-        System.out.println(queueKitchen.getAnimals());
-        queueKitchen.feed();
-        System.out.println(queueKitchen.getAnimals());
-
-        StreamTransformer streamTransformer = new StreamTransformer();
-        streamTransformer.transform("catsInfo.csv", "catsInfo.txt");
+        System.out.println(CatStatistics.sortByNameAscending(stackKitchen.getAnimals()));
+        System.out.println(CatStatistics.sortByWeightDescending(stackKitchen.getAnimals()));
+        System.out.println(CatStatistics.removeFirstAndLast(stackKitchen.getAnimals()));
+        System.out.println(CatStatistics.findFirstNonAngryCat(stackKitchen.getAnimals()));
+        System.out.println(CatStatistics.getCommonWeight(stackKitchen.getAnimals(), true));
+        System.out.println(CatStatistics.groupCatsByFirstLetter(stackKitchen.getAnimals()));
     }
 }
