@@ -42,9 +42,10 @@ public class CatStatistics {
     }
 
     public static Map<String, List<Cat>> groupCatsByFirstLetter(ArrayList<Cat> cats) {
-        return cats.stream().collect(
-                Collectors.groupingBy(
-                        cat -> cat.getName().substring(0,1),
-                        Collectors.toCollection(ArrayList::new)));
+        return cats.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                cat -> cat.getName().substring(0,1),
+                                Collectors.toList()));
     }
 }

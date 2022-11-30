@@ -6,7 +6,7 @@ import java.io.IOException;
 public class App
 {
     public static void main( String[] args ) throws IncorrectCatWeightException, IOException {
-        Cat c1 = new Cat("Murka", 1, true);
+        Cat c1 = new Cat("Zurka", 1, true);
         Cat c2 = new Cat("Murzik", 2,true);
         Cat c3 = new Cat("Barsik", 3, false);
 
