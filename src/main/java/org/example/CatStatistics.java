@@ -1,10 +1,8 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CatStatistics {
 
@@ -35,17 +33,21 @@ public class CatStatistics {
     }
 
     public static int getCommonWeight(ArrayList<Cat> cats, boolean onlyAngry) {
+        Stream<Cat> stream = cats.stream();
         return onlyAngry ?
-                cats.stream().filter(Cat::isAngry).map(Cat::getWeight).reduce(Integer::sum).orElse(0) :
-                cats.stream().map(Cat::getWeight).reduce(Integer::sum).orElse(0);
+                stream.filter(Cat::isAngry).map(Cat::getWeight).reduce(Integer::sum).orElse(0) :
+                stream.map(Cat::getWeight).reduce(Integer::sum).orElse(0);
 
     }
 
     public static Map<String, List<Cat>> groupCatsByFirstLetter(ArrayList<Cat> cats) {
-        return cats.stream()
-                .collect(
-                        Collectors.groupingBy(
-                                cat -> cat.getName().substring(0,1),
-                                Collectors.toList()));
+
+        Map<String, List<Cat>> finalMap = new LinkedHashMap<>();
+        cats.stream()
+                .collect(Collectors.groupingBy(cat -> cat.getName().substring(0,1)))
+                .entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .forEachOrdered(e->finalMap.put(e.getKey(),e.getValue()));
+        return finalMap;
     }
 }
